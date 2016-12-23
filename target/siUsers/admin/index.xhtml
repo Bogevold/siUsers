@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Admin side"></h:outputText>
+        </ui:define>
+		<div style="position: absolute; top:0px; right:0px; width:80px">
+		  <button>Logout</button>
+		</div>
+        <ui:define name="header">
+            <!--<div class="page-header">-->
+            <div>
+                <h2>Adminside</h2>
+                <p class="lead">Dette bildet lar deg bestille nytt passord for brukere til diverse SI-applikasjoner.</p>
+                <p class="lead">Du må være opprettet som bruker av en administrator før du kan bestille passord via denne siden.</p>
+            </div>
+        </ui:define>
+
+        <ui:define name="body">
+            <div class="well">
+                <h:form styleClass="form">
+                    <legend>Oppgi brukernavn for å få tilsendt nytt passord til registrert emailadresse.</legend>
+                    
+                    <label>Bruker id: </label>
+                    <h:inputText id="name" value="#{siBrukereBean.bid}" required="true" requiredMessage="Du må oppgi brukerid!" size="20"/>
+                    <h:message for="name" errorClass="alert-error" infoClass="alert-info"></h:message>
+                  
+                    <br/>
+                    <h:outputText value="#{siBrukereBean.msg}" styleClass="alert-success" escape="false"></h:outputText>
+
+                    <div class="form-actions">                        
+                        <span><h:commandButton value="Bestill" styleClass="btn btn-success" action="#{siBrukereBean.sjekkBid}" ></h:commandButton></span>                      
+                    </div>
+
+                </h:form>
+
+                 	<c:forEach items="#{siBrukereBean.roller}" var="rolle">
+					  <p>${rolle}</p>
+					</c:forEach>
+            </div>
+        </ui:define>
+
+        <ui:define name="footer">   
+            <footer>
+                <p>&copy; #{appInfo['si.selskap']}</p>                
+            </footer>
+        </ui:define>
+    </ui:composition>
+</html>
+
