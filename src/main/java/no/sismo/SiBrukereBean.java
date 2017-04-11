@@ -113,6 +113,7 @@ public class SiBrukereBean implements Serializable{
 		} catch (NamingException ex) {
 			ex.printStackTrace();
 			logger.error(ex.getMessage());
+			// TODO : Bare en test
 		}
 	}
 	
